@@ -200,13 +200,13 @@ if user_input == 'y':
     min_model = Min_model[[nearest_model]]
     min_model = min_model[min_model > 0].dropna()
     min_model = min_model.index.tolist()
-    min_model.append(y_variable)
+    
     min_model.append(variable_of_interest)
     print('We have built the stable model controlling for:' + str(min_model))
     print ('Does this look correct?')
     print('[y/n]')
     user_input = input()
-    
+    min_model.append(y_variable)
     if user_input == 'y':
         Structural_dataset = train[min_model]
         y = Structural_dataset[[y_variable]].values
