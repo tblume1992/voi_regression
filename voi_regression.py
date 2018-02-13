@@ -22,14 +22,15 @@ from sklearn import mixture
 iterations = 5000
 # Expected effect (in percentage) that the variable of interest has on the y variable
 expected_outcome = 0
-variable_of_interest = 'Name of the Variable of Interest in datasetr'
-y_variable = 'Name of y Variable in dataset'
+y_variable = 'variable name'
+variable_of_interest = 'variable name'
 mcmc_iterations = 5000
-"""Data containing all variables"""
+#Percentage of your dataset you want to subsample for each random model
+bootstrap_percentage = .3
+# The number of bins created for the histogram
+hist_bins = 100
+"""Sales Data"""
 df = pd.read_csv(FILEPATH)
-
-
-
 ###############################################################################
 ###############################################################################
 ###############################################################################
@@ -45,7 +46,7 @@ look = dataset[y_variable]
 dataset[y_variable] = np.log(df[y_variable]) 
 dataset = dataset.dropna()
 train = dataset
-dataset = dataset.drop(y_variable,1)
+dataset = dataset.drop(y_variable, 1)
 #Build dataset which we will add the coefficients to
 coef_index_vals = list(dataset)
 coef_index_vals = pd.DataFrame(coef_index_vals).set_index([0], drop = True)
@@ -56,7 +57,7 @@ mini_batch_count = 1
 mini_batch_coef = pd.DataFrame(index = coef_index_vals.index)
 print('Conducting random patches model')
 for i in tqdm(range(iterations)):
-    bootstrapped = train.sample(n=500, replace=True, weights=None, random_state=None, axis=None)
+    bootstrapped = train.sample(frac=bootstrap_percentage, replace=True, weights=None, random_state=None, axis=None)
     rand = randint(10, len(coef_index_vals))
     y = bootstrapped[y_variable]
     X = bootstrapped.drop(y_variable,1)
@@ -142,7 +143,7 @@ nearest_model = (distribution_means - expected_outcome)**2
 nearest_model = nearest_model.idxmin()
 nearest_model = nearest_model.at['Coefficient']
 #Plot histograms with centers of mass and check to ensure it was done well
-plt.hist(coefficients[variable_of_interest], bins=100, color='c')
+plt.hist(coefficients[variable_of_interest], bins=hist_bins, color='c')
 x1 = distribution_means.iloc[[0]].values
 count = 0
 print ('***Visual Check***')
