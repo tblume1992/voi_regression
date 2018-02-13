@@ -19,14 +19,14 @@ from sklearn import mixture
 ###############################################################################
 ###############################################################################
 '''USER INPUT PARAMETERS'''
-iterations = 500
+iterations = 5000
 # Expected effect (in percentage) that the variable of interest has on the y variable
 expected_outcome = 0
-y_variable = 'Page total likes'
-variable_of_interest = 'Post Hour'
+variable_of_interest = 'Name of the Variable of Interest in datasetr'
+y_variable = 'Name of y Variable in dataset'
 mcmc_iterations = 5000
-"""Sales Data"""
-df = pd.read_csv('C:\\Users\\t-blu\\Downloads\\facebook.csv')
+"""Data containing all variables"""
+df = pd.read_csv(FILEPATH)
 
 
 
