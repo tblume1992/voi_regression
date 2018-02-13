@@ -12,6 +12,6 @@ This distribution will usually be a mixture distribution, where each sub-populat
 
 median probability + 1 sd of the probabilities 
 
-for that sub population.  If the visual verification looks incorrect then you should increase the number of iterations so the distribution detection has more data to work with.
+for that sub population.  If the visual verification looks incorrect then you should increase the number of iterations so the distribution detection has more data to work with, alternatively, tune the percentage of your dataset that is subsampled.
 
 Finally, the script will take the "average" model which has the characteristics which is "closest" to the expected outcome defined by the user and run a GLM using MCMC sampling to build a posterior estimate for the probability distribution of the coefficient.
