@@ -142,7 +142,7 @@ nearest_model = (distribution_means - expected_outcome)**2
 nearest_model = nearest_model.idxmin()
 nearest_model = nearest_model.at['Coefficient']
 #Plot histograms with centers of mass and check to ensure it was done well
-plt.hist(coefficients['Post Hour'], bins=100, color='c')
+plt.hist(coefficients[variable_of_interest], bins=100, color='c')
 x1 = distribution_means.iloc[[0]].values
 count = 0
 print ('***Visual Check***')
