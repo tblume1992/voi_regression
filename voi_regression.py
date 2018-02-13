@@ -202,16 +202,22 @@ if user_input == 'y':
     min_model = min_model.index.tolist()
     min_model.append(y_variable)
     min_model.append(variable_of_interest)
-    Structural_dataset = train[min_model]
-    y = Structural_dataset[[y_variable]].values
-    structural_dataset = Structural_dataset.drop(y_variable,1)
-    x = structural_dataset
-    data = dict(x=x, y=y)
-    with pm.Model() as model:
-        pm.glm.GLM.from_formula('y ~ x', data)
-        trace = pm.sample(mcmc_iterations, cores=2)
-    plt.figure(figsize=(7, 7))
-    pm.traceplot(trace[100:])
-    plt.tight_layout();
-
-    pm.summary(trace)
+    print('We have built the stable model controlling for:' + str(min_model))
+    print ('Does this look correct?')
+    print('[y/n]')
+    user_input = input()
+    
+    if user_input == 'y':
+        Structural_dataset = train[min_model]
+        y = Structural_dataset[[y_variable]].values
+        structural_dataset = Structural_dataset.drop(y_variable,1)
+        x = structural_dataset
+        data = dict(x=x, y=y)
+        with pm.Model() as model:
+            pm.glm.GLM.from_formula('y ~ x', data)
+            trace = pm.sample(mcmc_iterations, cores=2)
+        plt.figure(figsize=(7, 7))
+        pm.traceplot(trace[100:])
+        plt.tight_layout();
+    
+        pm.summary(trace)
