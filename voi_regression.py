@@ -26,7 +26,7 @@ y_variable = 'variable name'
 variable_of_interest = 'variable name'
 mcmc_iterations = 5000
 #Percentage of your dataset you want to subsample for each random model
-bootstrap_percentage = .3
+bootstrap_percentage = .5
 # The number of bins created for the histogram
 hist_bins = 100
 """Sales Data"""
