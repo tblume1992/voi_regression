@@ -58,7 +58,7 @@ print('Conducting random patches model')
 for i in tqdm(range(iterations)):
     bootstrapped = train.sample(n=500, replace=True, weights=None, random_state=None, axis=None)
     rand = randint(10, len(coef_index_vals))
-    y = bootstrapped.iloc[:,[0]]
+    y = bootstrapped[y_variable]
     X = bootstrapped.drop(y_variable,1)
     VOI = X[variable_of_interest]
     X = X.drop(variable_of_interest)
