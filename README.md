@@ -4,7 +4,7 @@ What this script aims to do is to find a regression model which is "stable" in i
 
 To do this it first needs to know which variable you are interested in measuring, and what you believe is the effect this variable has on the y variable (In percentage terms).
 
-Next, the script will measure how sensitive the coefficient is to model selection.  It does this by doing a random patches algorithm for a user defined number of iterations.  The results from this will be a distribution of the variable of interest's estimated coefficients derived for the randomly built models.  It may look something like this:
+Next, the script will measure how sensitive the coefficient is to model selection.  It does this by doing a random patches algorithm for a user defined number of iterations.  The results from this will be a distribution of the variable of interest's estimated coefficients derived from the randomly built models.  It may look something like this:
 
 ![alt text](https://github.com/tblume1992/voi_regression/blob/master/Capture.PNG)
 
